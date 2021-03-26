@@ -45,17 +45,24 @@ mpg_2 %>%
 
 ###Q7. drv 변수 중 10, 14, 58, 93행에 존재할 수 없는 값 "k"를 할당하고, cty 변수 중 29, 43, 129, 203행에 극단적으로 크거나 작은 값으로 3, 4, 39, 42를 할당하세요.###
 ###Q7. In drv variables, rows 10, 14, 58, 93 that cannot exist are assigned "k", and cty variables are assigned extremely large or small values of 3, 4, 39, 42 to rows 29, 43, 129, and 203 Try it. ###
-mpg_2[c(65, 124, 131, 153, 212), "drv"] <- NA
-mpg_2$hwy
-
-
-
-
+mpg_2[c(10, 14, 58, 93), "drv"] <- "k"
+mpg_2[c(29, 43, 129, 203), "cty"] <- c(3, 4, 39, 42)
 
 
 ###Q8. drv 변수에 이상치가 있는지 확인하고, 이상치를 결측치 처리하세요. 결측치 처리 시에 %in%를 활용해서 코드를 간결하게 만들어 보세요.###
 ###Q8. Check if there are outliers in the drv variable, and handle outliers as missing values. When dealing with missing values, use %in% to simplify your code.###
-
+table(mpg_2$drv)
+mpg_2$drv <- ifelse(mpg_2$drv %in% c("4", "f", "r"), mpg_2$drv, NA)
+table(mpg_2$drv)
 
 ###Q9. 상자 그림을 이용해 cty에 이상치가 있는지 확인 하고, 상자 그림 통계치를 이용해 정상 범위를 벗어난 값을 결측 처리한 후 다시 상자 그림을 만들어 이상치가 사라졌는지 확인하세요.###
 ###Q9. Check if there are outliers in the cty using the box plot, and after processing the missing values out of the normal range using the box plot statistics, create a box plot again to see if the outlier disappears.###
+boxplot(mpg_2$cty)
+boxplot(mpg_2$cty)$stats
+
+mpg_2$cty <- ifelse(mpg_2$cty < 9 | mpg_2$cty >26, NA, mpg_2$cty)
+table(is.na(mpg_2$cty))
+boxplot(mpg_2$cty)
+
+
+
