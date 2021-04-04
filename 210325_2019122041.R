@@ -70,7 +70,7 @@ outlier
 
 #결측값이 아니라면 조건을 filter로 지정하고 summarise
 outlier %>%
-  filter(!is.na(sex) & !is.na(score)) %>%
+  filter(!is.na(sex) & !is.na(score))
   group_by(sex) %>%
   summarise(mean_score = mean(Score))
 
