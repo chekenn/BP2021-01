@@ -13,7 +13,7 @@ mean(score)
 ###Q3. Create and print the overall mean variable###
 #Create and print a new variable that contains the overall average score. Just apply the code you used to solve the previous problem.
 mean_variable <- c(score, mean(score))
-
+#mean_score <- mean(score)
 
 ###Q4. Create a data frame###
 #Combine data.frame() and c() to make the contents of the table below into a data frame and print it out.
@@ -30,7 +30,7 @@ df
 
 ###Q5. Finding the average###
 #Use the data frame you created earlier to find the average of the price of the fruit and the average of the sales volume.
-mean(price)
+mean(sales$price)
 mean(sales_rate)
 
 
@@ -55,5 +55,5 @@ class(new_drv)
 
 ###Q9. Checking the categories###
 #Check out what categories the drv variable consists of.
-levels(new_drv)
+levels(new_drv) #범주확인가능
 
