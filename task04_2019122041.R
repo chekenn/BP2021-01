@@ -8,14 +8,20 @@ ggplot(data=mpg, aes(x=cty, y=hwy)) +geom_point()
 ###Q2. Using midwest data, we want to find out what the relationship is between the total population and the Asian population. Create a scatterplot with poptotal on the x-axis and popasian on the y-axis. Set the scatterplot to display only regions with a total population of 500,000 or less and Asian populations of 10,000 or less.###
 ?midwest
 library(ggplot2)
+library(dplyr)
 
 midwest <- as.data.frame(ggplot2::midwest)
 
 df_midwest <- midwest %>%
   filter((poptotal<=500000) & (popasian<=10000))
-  df_midwest
+df_midwest
 
 ggplot(data=df_midwest, aes(x=poptotal, y=popasian)) +geom_point() 
+
+ggplot(data=midwest, aes(x=poptotal, y=popasian)) +   geom_point() +
+  xlim(0,500000) +
+  ylim(0,10000)
+
   
 ###Q3. mpg 데이터에서 어떤 회사에서 생산한 "suv" 차종의 도시 연비가 높은지 알아보려고 합니다. "suv"차종을 대상으로 평균 cty(도시 연비)가 가장 높은 회사 다섯 곳을 막대 그래프로 표현해 보세요. 막대는 연비가 높은 순으로 정렬하세요.###
 ###Q3. In mpg data, we want to find out which company produced "suv" cars have high city fuel economy. Express the five companies with the highest average cty (city fuel efficiency) for the "suv" car model as a bar graph. Sort the bars in order of highest fuel efficiency.###
@@ -51,20 +57,21 @@ ggplot(data=df_mpg, aes(x=class, y=cty)) + geom_boxplot()
 ###Q7. mpg 데이터에서 drv(구동 방식) 간에 cty(도시 연비)가 통계적으로 유의한 차이가 있는지 t-test를 각각 해보세요.###
 ###Q7. In mpg data, try each t-test to see if there is a statistically significant difference in cty (city fuel efficiency) between drv (drive method). ###
 table(mpg$drv)
-mpg_diff <- mpg %>%
+
+mpg_diff1 <- mpg %>%
   select(drv, cty) %>%
   filter(drv %in% c("f","4"))
-t.test(data=mpg_diff, cty ~ drv, var.equal = T)
+t.test(data=mpg_diff1, cty ~ drv, var.equal = T)
 
-mpg_diff <- mpg %>%
+mpg_diff2 <- mpg %>%
   select(drv, cty) %>%
   filter(drv %in% c("f","r"))
-t.test(data=mpg_diff, cty ~ drv, var.equal = T)
+t.test(data=mpg_diff2, cty ~ drv, var.equal = T)
 
-mpg_diff <- mpg %>%
+mpg_diff3 <- mpg %>%
   select(drv, cty) %>%
   filter(drv %in% c("4","r"))
-t.test(data=mpg_diff, cty ~ drv, var.equal = T)
+t.test(data=mpg_diff3, cty ~ drv, var.equal = T)
 
 ###결론 class "4"와 "r"은 통계적으로 유의미하지 않다. 
 
