@@ -26,6 +26,7 @@ hist(mw$asian_total)
 
 ###Q4. Create a derived variable that takes the average of the overall Asian population percentage, and gives "large" if it exceeds the average, and "small" otherwise.###
 ###문제4. 아시아 인구 백분율 전체 평균을 구하고, 평균을 초과하면 "large", 그 외에는 "small"을 부여하는 파생변수를 만들어 보세요.###
+mean(mw$asian_total)
 mw$asian_total_test <- ifelse(mw$asian_total > mean(mw$asian_total), "large", "small")
 
 ###Q5. Create a frequency table and a frequency bar graph of how many regions are in "large" and "small".###
