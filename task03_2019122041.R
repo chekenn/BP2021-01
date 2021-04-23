@@ -22,6 +22,9 @@ mpg_2
 head(mpg_2$model,5)
 head(mpg_2$fl, 5)
 head(mpg_2$price_fl, 5)
+#mpg_2 %>%
+#select(model, fl, price_fl) %>%
+#head(5)
 
 ###Q4. mpg 데이터에 결측치가 있는지 확인해보고, mpg 데이터의 hwy의 변수 중 65, 124, 131, 153, 212 행을 결측치로 할당하세요.###
 ###Q4. Check if there are missing values in the mpg data, and assign rows 65, 124, 131, 153, and 212 of the hwy variables of the mpg data as missing values. ###
